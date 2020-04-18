@@ -712,11 +712,13 @@ var Util = {
 
         // multiple delimiters
         var matchedDelimiter = '';
-        delimiters.forEach(function (current) {
+        for (var i = 0; i < delimiters.length; i++) {
+            var current = delimiters[i];
             if (value.slice(-current.length) === current) {
                 matchedDelimiter = current;
+                break;
             }
-        });
+        }
 
         return matchedDelimiter;
     },
@@ -832,7 +834,7 @@ var Util = {
     getFormattedValue: function (value, blocks, blocksLength, delimiter, delimiters, delimiterLazyShow) {
         var result = '',
             multipleDelimiters = delimiters.length > 0,
-            currentDelimiter;
+            currentDelimiter = '';
 
         // no options, normal input
         if (blocksLength === 0) {
